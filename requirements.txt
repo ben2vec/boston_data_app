@@ -1,0 +1,12 @@
+gunicorn
+plotly
+dash
+dash-renderer
+dash-html-components
+dash-core-components
+numpy
+pandas
+requests
+statsmodels
+django
+django-heroku
