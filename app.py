@@ -27,12 +27,15 @@ from dash.dependencies import Input, Output, State
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 #Model dependencies
 import numpy as np
+import keras
+import tensorflow as tf
+
 from keras.models import load_model
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 
 # Commented out IPython magic to ensure Python compatibility.
-# Python ≥3.5 is required
+'''# Python ≥3.5 is required
 import sys
 assert sys.version_info >= (3, 5)
 
@@ -60,6 +63,7 @@ import pandas as pd
 # to make this notebook's output stable across runs
 np.random.seed(49)
 tf.random.set_seed(49)
+'''
 
 from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
@@ -96,7 +100,7 @@ def save_to_multiple_csv_files(data, name_prefix, header=None, n_parts=10):
             for row_idx in row_indices:
                 f.write(",".join([repr(col) for col in data[row_idx]]))
                 f.write("\n")
-    return filepaths'''
+    return filepaths
 
 train_data = np.c_[X_train, y_train]
 valid_data = np.c_[X_valid, y_valid]
