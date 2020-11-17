@@ -61,7 +61,7 @@ import pandas as pd
 np.random.seed(49)
 tf.random.set_seed(49)
 
-'''from sklearn.datasets import load_boston
+from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
@@ -77,9 +77,9 @@ scaler = StandardScaler()
 scaler.fit(X_train)
 X_mean = scaler.mean_
 X_std = scaler.scale_
-X_train.shape'''
+X_train.shape
 
-'''def save_to_multiple_csv_files(data, name_prefix, header=None, n_parts=10):
+def save_to_multiple_csv_files(data, name_prefix, header=None, n_parts=10):
     housing_dir = os.path.join("datasets", "housing")
     os.makedirs(housing_dir, exist_ok=True)
     path_format = os.path.join(housing_dir, "my_{}_{:02d}.csv")
@@ -98,7 +98,7 @@ X_train.shape'''
                 f.write("\n")
     return filepaths'''
 
-'''train_data = np.c_[X_train, y_train]
+train_data = np.c_[X_train, y_train]
 valid_data = np.c_[X_valid, y_valid]
 test_data = np.c_[X_test, y_test]
 #header_cols = housing.feature_names + ["MedianHouseValue"]
@@ -109,13 +109,13 @@ train_filepaths = save_to_multiple_csv_files(train_data, "train", header, n_part
 valid_filepaths = save_to_multiple_csv_files(valid_data, "valid", header, n_parts=10)
 test_filepaths = save_to_multiple_csv_files(test_data, "test", header, n_parts=10)
 header_cols
-# train_data.shape'''
+# train_data.shape
 
-'''pd.read_csv(train_filepaths[0]).head(20)'''
+pd.read_csv(train_filepaths[0]).head(20)
 
-'''X_train.shape[-1]'''
+X_train.shape[-1]
 
-'''n_inputs = 13
+n_inputs = 13
 
 @tf.function
 def preprocess(line):
@@ -123,9 +123,9 @@ def preprocess(line):
     fields = tf.io.decode_csv(line, record_defaults=defs)
     x = tf.stack(fields[:-1])
     y = tf.stack(fields[-1:])
-    return (x - X_mean) / X_std, y'''
+    return (x - X_mean) / X_std, y
 
-'''def csv_reader_dataset(filepaths, repeat=1, n_readers=5,
+def csv_reader_dataset(filepaths, repeat=1, n_readers=5,
                        n_read_threads=None, shuffle_buffer_size=10000,
                        n_parse_threads=5, batch_size=32):
     dataset = tf.data.Dataset.list_files(filepaths).repeat(repeat)
@@ -135,13 +135,12 @@ def preprocess(line):
     dataset = dataset.shuffle(shuffle_buffer_size)
     dataset = dataset.map(preprocess, num_parallel_calls=n_parse_threads)
     dataset = dataset.batch(batch_size)
-    return dataset.prefetch(1)'''
+    return dataset.prefetch(1)
 
-'''train_set = csv_reader_dataset(train_filepaths, repeat=None)
+train_set = csv_reader_dataset(train_filepaths, repeat=None)
 valid_set = csv_reader_dataset(valid_filepaths)
-test_set = csv_reader_dataset(test_filepaths)'''
+test_set = csv_reader_dataset(test_filepaths)
 
-'''
 keras.backend.clear_session()
 
 model = keras.models.Sequential([
@@ -160,16 +159,15 @@ batch_size = 32
 print (len(X_train))
 model.fit(train_set, steps_per_epoch=len(X_train) // batch_size, epochs=100,
           validation_data=valid_set)
-          '''
 
-'''np.sqrt(model.evaluate(test_set, steps=len(X_test) // batch_size))'''
+np.sqrt(model.evaluate(test_set, steps=len(X_test) // batch_size))
 
-#model_version = "0001"
-#model_name = "boston_model"
-#model_path = os.path.join(model_name, model_version)
-#model_path
+model_version = "0001"
+model_name = "boston_model"
+model_path = os.path.join(model_name, model_version)
+model_path
 
-#model.save('boston_model')
+model.save('boston_model')
 
 model = keras.models.load_model('boston_model')
 
