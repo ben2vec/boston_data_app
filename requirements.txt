@@ -10,9 +10,8 @@ requests
 statsmodels
 django
 django-heroku
-dash.dependencies
+dash
 keras
-keras.models
 sklearn
 tensorflow
 os
